@@ -1,0 +1,22 @@
+import math
+import time
+
+def measure_time(func):
+    def wrapper(a, b):
+        start = time.time()
+        result = func(a, b)
+        end = time.time()
+        print(f"Function {func.__name__} was running {end - start:.5f}s, given sides: {a}, {b}, and  result: {result}")
+        return result
+    return wrapper
+
+@measure_time
+def calc_hypotenuse(a, b):
+    return math.sqrt(a**2 + b**2)
+
+print("Enter lengths of the sides of a right triangle:")
+a = float(input("a = "))
+b = float(input("b = "))
+
+c = calc_hypotenuse(a, b)
+print("The length of the hypotenuse is", c)
